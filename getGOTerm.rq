@@ -10,7 +10,7 @@
 #+    - TAIR10:5
 #+ defaults:
 #+  - function: "seed germination"
-#+  - chro: "TAIR10:1"
+#+  - chro: TAIR10:1
 
 prefix obo: <http://purl.obolibrary.org/obo/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
