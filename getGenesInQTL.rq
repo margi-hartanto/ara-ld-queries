@@ -28,7 +28,7 @@ SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE
 {
  {
-  VALUES ?ref{ ?_ref_iri }
+  VALUES ?ref{ ?_ref }
   FILTER (?begin_pos >= ?_begin_xsd_integer && 
           ?end_pos <= ?_end_xsd_integer) .
   ?gene a                     obo:SO_0001217 .
