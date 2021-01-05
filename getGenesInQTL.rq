@@ -1,6 +1,13 @@
 #+ summary: Get genomic features given an interval.
 #+ tags:
-#+  - Get genomic features given an interval
+#+  - Get genomic features given an interval.
+#+ enumerate:
+#+  - ref:
+#+    - TAIR10:1
+#+    - TAIR10:2
+#+    - TAIR10:3
+#+    - TAIR10:4
+#+    - TAIR10:5
 #+ defaults:
 #+  - begin: "2000000"
 #+  - end: "4000000"
@@ -21,7 +28,7 @@ SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE
 {
  {
-  VALUES ?ref{ TAIR10:5 }
+  VALUES ?ref{ ?_ref_iri }
   FILTER (?begin_pos >= ?_begin_xsd_integer && 
           ?end_pos <= ?_end_xsd_integer) .
   ?gene a                     obo:SO_0001217 .
