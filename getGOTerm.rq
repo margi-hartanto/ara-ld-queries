@@ -9,7 +9,7 @@
 #+    - TAIR10:4
 #+    - TAIR10:5
 #+ defaults:
-#+  - function: "'seed germination'"
+#+  - function: "seed germination"
 #+  - chro: "TAIR10:1"
 
 prefix obo: <http://purl.obolibrary.org/obo/>
