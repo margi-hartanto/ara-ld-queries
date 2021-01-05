@@ -1,13 +1,6 @@
 #+ summary: Get genes given a GO term.
 #+ tags:
 #+  - Get genes given a GO term.
-#+ enumerate:
-#+  - chro:
-#+    - TAIR10:1
-#+    - TAIR10:2
-#+    - TAIR10:3
-#+    - TAIR10:4
-#+    - TAIR10:5
 #+ defaults:
 #+  - function: "seed germination"
 
