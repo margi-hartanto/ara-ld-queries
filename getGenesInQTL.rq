@@ -18,12 +18,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX bif: <bif:>
 
 SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
-WHERE{
+WHERE
+{
+ {
   VALUES ?ref{ TAIR10:5 }
-  {
-    FILTER (?begin_pos >= ?_begin_xsd_integer && 
-            ?end_pos <= ?_end_xsd_integer) .
-  }
+  FILTER (?begin_pos >= ?_begin_xsd_integer && 
+          ?end_pos <= ?_end_xsd_integer) .
   ?gene a                     obo:SO_0001217 .
   ?gene faldo:location            ?gene_loc .
   ?gene_loc faldo:begin           ?begin ;
@@ -33,5 +33,5 @@ WHERE{
             ?end faldo:position   ?end_pos .
 
   ?gene rdfs:label ?regulator .
-
+ }
 }
