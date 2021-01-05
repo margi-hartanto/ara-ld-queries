@@ -10,7 +10,6 @@
 #+    - TAIR10:5
 #+ defaults:
 #+  - function: "seed germination"
-#+  - chro: TAIR10:1
 
 prefix obo: <http://purl.obolibrary.org/obo/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -35,7 +34,7 @@ WHERE{
 ?gene faldo:location            ?gene_loc .
 ?gene_loc faldo:begin           ?begin ;
           faldo:end             ?end ;
-          faldo:reference       ?_chro .
+          faldo:reference       ?_chro_xsd_iri .
 
 ?go1 oboInOwl:hasOBONamespace "biological_process"^^<http://www.w3.org/2001/XMLSchema#string> ;
      rdfs:label ?_function_xsd_string .
