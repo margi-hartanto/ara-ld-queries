@@ -19,19 +19,16 @@ PREFIX bif: <bif:>
 
 SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
+  VALUES ?ref{ TAIR10:5 }
+  FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
+  ?gene a                     obo:SO_0001217 .
+  ?gene faldo:location            ?gene_loc .
+  ?gene_loc faldo:begin           ?begin ;
+            faldo:end             ?end ;
+            faldo:reference       ?ref .
+            ?begin faldo:position ?begin_pos .
+            ?end faldo:position   ?end_pos .
 
-VALUES ?ref{ TAIR10:5 }
-FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
-
-?gene a                     obo:SO_0001217 .
-?gene faldo:location            ?gene_loc .
-?gene_loc faldo:begin           ?begin ;
-          faldo:end             ?end ;
-          faldo:reference       ?ref .
-          ?begin faldo:position ?begin_pos .
-          ?end faldo:position   ?end_pos .
-
-# get the gene label
-?gene rdfs:label ?regulator .
+  ?gene rdfs:label ?regulator .
 
 }
