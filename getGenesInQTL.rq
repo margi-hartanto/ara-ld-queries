@@ -1,24 +1,37 @@
-#+ summary: Get genes that overlap with a QTL identified by ID.
+#+ summary: Get genomic features given an interval.
 #+ tags:
-#+  - Get genes in a QTL
+#+  - Get genomic features given an interval
 #+ defaults:
-#+  - qtlid: QTL:3859326_3_2
+#+  - begin: "2000000"
+#+  - end: "4000000"
 
+prefix obo: <http://purl.obolibrary.org/obo/>
+prefix faldo: <http://biohackathon.org/resource/faldo#>
+prefix TAIR10: <http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX so: <http://purl.obolibrary.org/obo/so#>
-PREFIX Gene: <http://purl.obolibrary.org/obo/SO_0001217>
-PREFIX QTL: <http://purl.obolibrary.org/obo/SO_0000771>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX faldo: <http://biohackathon.org/resource/faldo#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX bif: <bif:>
 
-SELECT
-  ?gene_id
-FROM <http://solgenomics.net/genome/Solanum_lycopersicum>
-FROM <http://solgenomics.net/genome/Solanum_tuberosum>
-FROM <http://europepmc.org>
-WHERE {
-  ?gene a Gene: ;
-    dcterms:identifier ?gene_id .
-  ?qtl a QTL: ;
-    dcterms:identifier ?_qtlid ;
-    so:overlaps ?gene .
+SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
+WHERE{
+
+VALUES ?ref{ TAIR10:5 }
+FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
+
+?gene a                     obo:SO_0001217 .
+?gene faldo:location            ?gene_loc .
+?gene_loc faldo:begin           ?begin ;
+          faldo:end             ?end ;
+          faldo:reference       ?ref .
+          ?begin faldo:position ?begin_pos .
+          ?end faldo:position   ?end_pos .
+
+# get the gene label
+?gene rdfs:label ?regulator .
+
 }
