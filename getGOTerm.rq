@@ -2,11 +2,12 @@
 #+ tags:
 #+  - Get genes given a GO term.
 #+ enumerate:
-#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/1
-#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/2
-#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/3
-#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/4
-#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/5
+#+  - chro:
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/1
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/2
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/3
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/4
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/5
 #+ defaults:
 #+  - function: "seed germination"
 
