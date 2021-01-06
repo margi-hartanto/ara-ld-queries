@@ -1,6 +1,12 @@
 #+ summary: Get genes given a GO term.
 #+ tags:
 #+  - Get genes given a GO term.
+#+ enumerate:
+#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/1
+#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/2
+#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/3
+#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/4
+#+  - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/5
 #+ defaults:
 #+  - function: "seed germination"
 
@@ -27,7 +33,7 @@ WHERE{
 ?gene faldo:location            ?gene_loc .
 ?gene_loc faldo:begin           ?begin ;
           faldo:end             ?end ;
-          faldo:reference       ?_chro_en .
+          faldo:reference       ?_chro_iri .
 
 ?go1 oboInOwl:hasOBONamespace "biological_process"^^<http://www.w3.org/2001/XMLSchema#string> ;
      rdfs:label ?_function_xsd_string .
