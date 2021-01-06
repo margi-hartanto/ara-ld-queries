@@ -27,7 +27,7 @@ WHERE{
 ?gene faldo:location            ?gene_loc .
 ?gene_loc faldo:begin           ?begin ;
           faldo:end             ?end ;
-          faldo:reference       ?_chro_TAIR10_integer .
+          faldo:reference       ?_chro_en .
 
 ?go1 oboInOwl:hasOBONamespace "biological_process"^^<http://www.w3.org/2001/XMLSchema#string> ;
      rdfs:label ?_function_xsd_string .
