@@ -26,6 +26,9 @@ prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
 SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
 
+# define the interval
+
+
 # get the list of candidate in the QTL interval
 ?gene a                     obo:SO_0001217 .
 
@@ -35,6 +38,8 @@ WHERE{
 ?gene_loc faldo:begin           ?begin ;
           faldo:end             ?end ;
           faldo:reference       ?_chro_iri .
+?begin    faldo:position 	?begin_pos .
+?end	  faldo:position	?end_pos .
 
 ?go1 oboInOwl:hasOBONamespace "biological_process"^^<http://www.w3.org/2001/XMLSchema#string> ;
      rdfs:label ?_function_xsd_string .
@@ -42,4 +47,6 @@ WHERE{
 # get the gene label
 ?gene rdfs:label ?regulator .
 
+FILTER( ?begin_pos >= ?_begin_xsd_integer &&
+        ?end_pos <= ?_end_pos_integer )
 }
