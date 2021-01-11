@@ -19,12 +19,11 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX faldo: <http://biohackathon.org/resource/faldo#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX bif: <bif:>
 
 SELECT ?candidate_gene
 WHERE
 {
-SELECT 
+SELECT
 DISTINCT (str(?regulator) AS ?candidate_gene)
 ?begin_pos
 ?end_pos
@@ -34,7 +33,6 @@ WHERE
 ?gene a                     obo:SO_0001217 .
 
 # query the candidate that shared bp go term
-?gene resource:SIO_000255 ?go1 .
 ?gene faldo:location            ?gene_loc .
 ?gene_loc faldo:begin           ?begin ;
           faldo:end             ?end ;
@@ -46,9 +44,8 @@ WHERE
 # get the gene label
 ?gene rdfs:label ?regulator .
 
+FILTER( ?begin_pos >= 2000000 &&
+          ?end_pos <= 4000000 )
+
 }
-
-FILTER( ?begin_pos >= ?_begin_integer &&
-          ?end_pos <= ?_end_integer )
-
 }
