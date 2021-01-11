@@ -1,16 +1,13 @@
-#+ summary: Get genomic features given an interval.
+#+ summary: Get genes given an interval.
 #+ tags:
-#+  - Get genomic features given an interval.
+#+  - Get genes given an interval.
 #+ enumerate:
-#+  - ref:
-#+    - TAIR10:1
-#+    - TAIR10:2
-#+    - TAIR10:3
-#+    - TAIR10:4
-#+    - TAIR10:5
-#+ defaults:
-#+  - begin: "2000000"
-#+  - end: "4000000"
+#+  - chro:
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/1
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/2
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/3
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/4
+#+    - http://rdf.ebi.ac.uk/resource/ensembl/33/arabidopsis_thaliana/TAIR10/5
 
 prefix obo: <http://purl.obolibrary.org/obo/>
 prefix faldo: <http://biohackathon.org/resource/faldo#>
@@ -24,21 +21,34 @@ PREFIX faldo: <http://biohackathon.org/resource/faldo#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX bif: <bif:>
 
-SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
+SELECT ?candidate_gene
 WHERE
 {
- {
-  VALUES ?ref{ ?_ref }
-  FILTER (?begin_pos >= ?_begin_xsd_integer && 
-          ?end_pos <= ?_end_xsd_integer) .
-  ?gene a                     obo:SO_0001217 .
-  ?gene faldo:location            ?gene_loc .
-  ?gene_loc faldo:begin           ?begin ;
-            faldo:end             ?end ;
-            faldo:reference       ?ref .
-            ?begin faldo:position ?begin_pos .
-            ?end faldo:position   ?end_pos .
+SELECT 
+DISTINCT (str(?regulator) AS ?candidate_gene)
+?begin_pos
+?end_pos
+WHERE
+{
+# get the list of candidate in the QTL interval
+?gene a                     obo:SO_0001217 .
 
-  ?gene rdfs:label ?regulator .
- }
+# query the candidate that shared bp go term
+?gene resource:SIO_000255 ?go1 .
+?gene faldo:location            ?gene_loc .
+?gene_loc faldo:begin           ?begin ;
+          faldo:end             ?end ;
+          faldo:reference       ?_chro_iri .
+?begin    faldo:position        ?begin_pos .
+?end      faldo:position        ?end_pos .
+
+
+# get the gene label
+?gene rdfs:label ?regulator .
+
+}
+
+FILTER( ?begin_pos >= ?_begin_integer &&
+          ?end_pos <= ?_end_integer )
+
 }
