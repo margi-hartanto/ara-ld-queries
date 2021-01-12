@@ -29,6 +29,7 @@ DISTINCT (str(?regulator) AS ?candidate_gene)
 ?end_pos
 WHERE
 {
+{
 # get the list of candidate in the QTL interval
 ?gene a                     obo:SO_0001217 .
 
@@ -43,7 +44,7 @@ WHERE
 
 # get the gene label
 ?gene rdfs:label ?regulator .
-
+}
 FILTER( ?begin_pos >= ?_begin_integer &&
           ?end_pos <= ?end_integer )
 
