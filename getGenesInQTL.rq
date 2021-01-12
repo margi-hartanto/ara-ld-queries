@@ -45,8 +45,8 @@ WHERE
 # get the gene label
 ?gene rdfs:label ?regulator .
 }
-FILTER( ?begin_pos >= ?_begin_integer &&
-          ?end_pos <= ?end_integer )
+FILTER( ?begin_pos >= ?_begin_xsd_integer &&
+          ?end_pos <= ?_end_xsd_integer )
 
 }
 }
