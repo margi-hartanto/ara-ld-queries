@@ -25,9 +25,8 @@ WHERE {
     GRAPH <http://plants.ensembl.org/arabidopsis_thaliana> {
     SELECT
       ?gene_label
-      ?feature_name
-      ?begin_pos
-      ?end_pos
+	  ?begin_pos
+	  ?end_pos
     WHERE {
     GRAPH <http://purl.obolibrary.org/obo/so.owl> {
       ?feature_type a owl:Class ;
@@ -40,11 +39,11 @@ WHERE {
     ?loc faldo:begin ?begin ;
       faldo:end ?end .
     ?begin faldo:position ?begin_pos ;
-      faldo:reference TAIR10:1 .
+      faldo:reference ?_chro_iri .
     ?end faldo:position ?end_pos ;
-      faldo:reference TAIR10:1 .
+      faldo:reference ?_chro_iri .
     }
   }
-  FILTER(?begin_pos >= 0 &&
-         ?end_pos <= 200000)
+  FILTER(?begin_pos >= ?_begin_xsd_integer &&
+         ?end_pos <= ?_end_xsd_integer)
 }
